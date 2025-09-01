@@ -1,0 +1,24 @@
+name: Show GitHub Environment Variables
+
+on:
+  workflow_dispatch:
+
+jobs:
+  show-env-vars:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show GitHub Environment Variables
+        shell: pwsh
+        run: |
+          Write-Host "GITHUB_WORKSPACE: $env:GITHUB_WORKSPACE"
+          Write-Host "GITHUB_RUN_ID: $env:GITHUB_RUN_ID"
+          Write-Host "GITHUB_REPOSITORY: $env:GITHUB_REPOSITORY"
+          Write-Host "GITHUB_SHA: $env:GITHUB_SHA"
+          Write-Host "GITHUB_REF: $env:GITHUB_REF"
+          Write-Host "GITHUB_ACTOR: $env:GITHUB_ACTOR"
+          Write-Host "GITHUB_EVENT_NAME: $env:GITHUB_EVENT_NAME"
+          Write-Host "GITHUB_RUN_NUMBER: $env:GITHUB_RUN_NUMBER"
+          Write-Host "GITHUB_JOB: $env:GITHUB_JOB"
