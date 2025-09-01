@@ -1,7 +1,6 @@
 name: Workflow A (caller)
 
 on:
-  push:
   pull_request:
   workflow_dispatch:
     inputs:
