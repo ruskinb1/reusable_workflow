@@ -1,0 +1,29 @@
+name: Build and Deploy Workflow
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Build
+        run: echo "Running build process..."
+
+  deploy:
+    name: Deploy Job
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref_name }}-${{ github.event_name }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy App
+        run: echo "Deploying app to ${{ github.ref_name }}-${{ github.event_name }}-${{ github.repository }} environment..."
