@@ -1,0 +1,29 @@
+name: Product Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  write-all
+
+jobs:
+  deploy:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - productName: 1120TX
+            solutionFile: "src/ctx.sln"
+          - productName: 1041TX
+            solutionFile: "src/ftx.sln"
+          - productName: 1040TX
+            solutionFile: "src/itx.sln"
+          - productName: 1065TX
+            solutionFile: "src/ptx.sln"
+    name: Deploy ${{ matrix.productName }}
+    uses: ruskinb1/test-aws-connectivity/.github/workflows/build-release.yaml@main
+    with:
+      productName: ${{ matrix.productName }}
+      SolutionFiles: ${{ matrix.solutionFile }}
