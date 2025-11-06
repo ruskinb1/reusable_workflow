@@ -27,3 +27,4 @@ jobs:
     with:
       productName: ${{ matrix.productName }}
       SolutionFiles: ${{ matrix.solutionFile }}
+      
